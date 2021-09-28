@@ -55,20 +55,22 @@ class TrackDetailView: UIView {
     }
     
     private func monitorPlayingStartTime() {
-        let time: CMTime = CMTimeMake(value: 1, timescale: 10)
+        let time: CMTime = CMTimeMake(value: 1, timescale: 3)
         player.addBoundaryTimeObserver(forTimes: [NSValue(time: time)], queue: .main) {[weak self] in
             self?.playerStartPlaying()
         }
     }
     
     private func playerStartPlaying() {
-        UIImageView.animate(withDuration: 1, delay: 0, options: .curveEaseIn, animations: {[weak self] in
+        UIImageView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {[weak self] in
             self?.trackImageView.transform = .identity
         }, completion: nil)
     }
     
     private func playerStopPlaying() {
-        
+        UIImageView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {[weak self] in
+            self?.trackImageView.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+        }, completion: nil)
     }
     
     @IBAction func dragDownButtonHandler(_ sender: UIButton) {
@@ -86,6 +88,7 @@ class TrackDetailView: UIView {
         switch player.timeControlStatus {
         case .paused:
             player.play()
+            playerStartPlaying()
             sender.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
             break
         case .waitingToPlayAtSpecifiedRate:
@@ -93,6 +96,7 @@ class TrackDetailView: UIView {
             break
         case .playing:
             player.pause()
+            playerStopPlaying()
             sender.setImage(#imageLiteral(resourceName: "play"), for: .normal)
             break
         @unknown default:
