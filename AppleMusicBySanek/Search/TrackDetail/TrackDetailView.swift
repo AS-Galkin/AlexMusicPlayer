@@ -50,6 +50,7 @@ class TrackDetailView: UIView {
         
         guard let url600 = URL(string: viewModel.trackImageUrl?.replacingOccurrences(of: "100x100", with: "600x600") ?? "") else { return }
         monitorPlayingStartTime()
+        makeTimerForTimeLabel(timeInterval: CMTimeMake(value: 1, timescale: 1))
         trackImageView.sd_setImage(with: url600, completed: nil)
         playTrack(trackPreviewUrl: viewModel.trackPreviewUrl)
     }
@@ -58,6 +59,14 @@ class TrackDetailView: UIView {
         let time: CMTime = CMTimeMake(value: 1, timescale: 3)
         player.addBoundaryTimeObserver(forTimes: [NSValue(time: time)], queue: .main) {[weak self] in
             self?.playerStartPlaying()
+        }
+    }
+    
+    private func makeTimerForTimeLabel(timeInterval: CMTime) {
+        player.addPeriodicTimeObserver(forInterval: timeInterval, queue: .main) { [weak self] time in
+            self?.currentTimeLabel.text = time.toString()
+            
+            self?.summaryTimeLabel.text = "-\(((self?.player.currentItem?.duration ?? CMTimeMake(value: 1, timescale: 1)) - time).toString())"
         }
     }
     

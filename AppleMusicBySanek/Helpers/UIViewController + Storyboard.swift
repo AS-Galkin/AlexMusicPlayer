@@ -5,7 +5,7 @@
 //  Created by Александр Галкин on 22.09.2021.
 //
 
-import Foundation
+import AVKit
 import UIKit
 
 extension UIViewController {
@@ -19,5 +19,15 @@ extension UIViewController {
         } else {
             fatalError("Error: No initial viewController in \(name) storyboard!")
         }
+    }
+}
+
+extension CMTime {
+    func toString() -> String {
+        guard !CMTimeGetSeconds(self).isNaN else { return "no data"}
+        let total = Int(CMTimeGetSeconds(self))
+        let seconds = total % 60
+        let minutes = total / 60
+        return String(format: "%02d:%02d", minutes, seconds)
     }
 }
