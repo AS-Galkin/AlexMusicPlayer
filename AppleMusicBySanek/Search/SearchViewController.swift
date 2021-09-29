@@ -118,7 +118,8 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         
         let keyWindow = UIApplication.shared.connectedScenes.filter({$0.activationState == .foregroundActive}).compactMap({$0 as? UIWindowScene}).first?.windows.filter({$0.isKeyWindow}).first
         
-        let detailTrackView = Bundle.main.loadNibNamed("TrackDetailView", owner: self, options: nil)?.first as! TrackDetailView
+        let detailTrackView: TrackDetailView = TrackDetailView.loadFromNib()
+        detailTrackView.delegate = self
         
         keyWindow?.addSubview(detailTrackView)
         
@@ -137,5 +138,32 @@ extension SearchViewController: UISearchBarDelegate {
             self?.interactor?.makeRequest(request: .getTracks(searchTerm: searchText))
         })
         
+    }
+}
+
+extension SearchViewController: TrackMovingDelegate {
+    
+    //MARK: - Section for getting next or prev track data
+    private func getIndexPath(seek: Int, indexPath: IndexPath) -> IndexPath {
+        return IndexPath(row: indexPath.row + seek, section: indexPath.section)
+    }
+    
+    func move(seek: Int) -> SearchViewModel.Cell? {
+        guard let curentIndexPath = searchTableView.indexPathForSelectedRow else {
+            return nil
+        }
+        
+        var nextIndexPath = getIndexPath(seek: seek, indexPath: curentIndexPath)
+        
+        if nextIndexPath.row == cellViewModel.cells.count {
+            nextIndexPath.row = 0
+        } else {
+            nextIndexPath.row = cellViewModel.cells.count - 1
+        }
+        
+        let viewModel = cellViewModel.cells[nextIndexPath.row]
+        searchTableView.selectRow(at: nextIndexPath, animated: true, scrollPosition: .none)
+        
+        return viewModel
     }
 }

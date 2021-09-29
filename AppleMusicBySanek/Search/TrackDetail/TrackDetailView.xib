@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -10,12 +10,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="RsM-CO-31s" customClass="TrackDetailView" customModule="AppleMusicBySanek" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+        <view contentMode="scaleToFill" id="RsM-CO-31s" customClass="TrackDetailView" customModule="MusicPlayer" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="L7s-DD-BXa">
-                    <rect key="frame" x="30" y="0.0" width="315" height="637"/>
+                    <rect key="frame" x="30" y="44" width="315" height="704"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tER-dd-Ydo">
                             <rect key="frame" x="0.0" y="0.0" width="315" height="44"/>
@@ -46,13 +46,13 @@
                                     <rect key="frame" x="0.0" y="30" width="315" height="18"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NaB-fB-INg">
-                                            <rect key="frame" x="0.0" y="0.0" width="157.5" height="18"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="157.66666666666666" height="18"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" red="0.56470588235294117" green="0.56862745098039214" blue="0.58823529411764708" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--:--" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DpX-Tn-qdn">
-                                            <rect key="frame" x="157.5" y="0.0" width="157.5" height="18"/>
+                                            <rect key="frame" x="157.66666666666663" y="0.0" width="157.33333333333337" height="18"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" red="0.56470588235294117" green="0.56862745098039214" blue="0.58823529411764708" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -62,16 +62,16 @@
                             </subviews>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="erg-4j-bJj">
-                            <rect key="frame" x="0.0" y="434" width="315" height="58"/>
+                            <rect key="frame" x="0.0" y="434" width="315" height="57.333333333333314"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Track Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fWf-rw-jCi">
-                                    <rect key="frame" x="0.0" y="0.0" width="315" height="29"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="315" height="28.666666666666668"/>
                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zcb-kN-kgU">
-                                    <rect key="frame" x="0.0" y="29" width="315" height="29"/>
+                                    <rect key="frame" x="0.0" y="28.666666666666686" width="315" height="28.666666666666671"/>
                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
                                     <color key="textColor" red="0.90980392156862744" green="0.27058823529411763" blue="0.3529411764705882" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
@@ -79,24 +79,24 @@
                             </subviews>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="WFg-eL-xog">
-                            <rect key="frame" x="0.0" y="501" width="315" height="110"/>
+                            <rect key="frame" x="0.0" y="500.33333333333343" width="315" height="177.66666666666669"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j9q-C6-OaC">
-                                    <rect key="frame" x="0.0" y="44" width="105" height="22"/>
+                                    <rect key="frame" x="0.0" y="78" width="105" height="22"/>
                                     <state key="normal" image="Left"/>
                                     <connections>
                                         <action selector="prevTrackButtonHandler:" destination="RsM-CO-31s" eventType="touchUpInside" id="7el-NH-zdh"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ruA-3h-Qc4">
-                                    <rect key="frame" x="105" y="25.5" width="105" height="59"/>
+                                    <rect key="frame" x="105" y="59.333333333333258" width="105" height="59"/>
                                     <state key="normal" image="play"/>
                                     <connections>
                                         <action selector="playPauseButtonHandler:" destination="RsM-CO-31s" eventType="touchUpInside" id="oaL-sl-Aq1"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gux-c5-NdI">
-                                    <rect key="frame" x="210" y="44" width="105" height="22"/>
+                                    <rect key="frame" x="210" y="78" width="105" height="22"/>
                                     <state key="normal" image="Right"/>
                                     <connections>
                                         <action selector="nextTrackButtonHandler:" destination="RsM-CO-31s" eventType="touchUpInside" id="NXm-ff-DHb"/>
@@ -105,7 +105,7 @@
                             </subviews>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="2xU-mm-4gF">
-                            <rect key="frame" x="0.0" y="620" width="315" height="17"/>
+                            <rect key="frame" x="0.0" y="687" width="315" height="17"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon Min" translatesAutoresizingMaskIntoConstraints="NO" id="S3T-xA-NL6">
                                     <rect key="frame" x="0.0" y="0.0" width="17" height="17"/>

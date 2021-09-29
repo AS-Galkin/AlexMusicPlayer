@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		67A583B6F08D4C5663138252 /* libPods-AppleMusicBySanek.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 364C30AD521A056FEE01AB55 /* libPods-AppleMusicBySanek.a */; };
+		942CDF042704AFFC00D6EFAC /* UIKit + NIbExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942CDF032704AFFC00D6EFAC /* UIKit + NIbExtension.swift */; };
 		943A127726FA0B60003177CA /* SearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943A127626FA0B60003177CA /* SearchResponse.swift */; };
 		943A127926FA1569003177CA /* NetworkLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943A127826FA1569003177CA /* NetworkLayer.swift */; };
 		9455279B26FB3DBC00228C73 /* SearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9455279426FB3DBC00228C73 /* SearchPresenter.swift */; };
@@ -35,6 +36,7 @@
 
 /* Begin PBXFileReference section */
 		364C30AD521A056FEE01AB55 /* libPods-AppleMusicBySanek.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AppleMusicBySanek.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		942CDF032704AFFC00D6EFAC /* UIKit + NIbExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIKit + NIbExtension.swift"; sourceTree = "<group>"; };
 		943A127626FA0B60003177CA /* SearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResponse.swift; sourceTree = "<group>"; };
 		943A127826FA1569003177CA /* NetworkLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLayer.swift; sourceTree = "<group>"; };
 		9455279426FB3DBC00228C73 /* SearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPresenter.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				945527A526FB6DD300228C73 /* UIViewController + Storyboard.swift */,
+				942CDF032704AFFC00D6EFAC /* UIKit + NIbExtension.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -301,6 +304,7 @@
 				945527A626FB6DD300228C73 /* UIViewController + Storyboard.swift in Sources */,
 				9468158026F4951F00688455 /* SearchMusicTableViewController.swift in Sources */,
 				943A127726FA0B60003177CA /* SearchResponse.swift in Sources */,
+				942CDF042704AFFC00D6EFAC /* UIKit + NIbExtension.swift in Sources */,
 				945527A026FB3DBC00228C73 /* SearchInteractor.swift in Sources */,
 				947FF24A26FCC8F000150023 /* TrackCell.swift in Sources */,
 				9468156E26F493E600688455 /* ViewController.swift in Sources */,
