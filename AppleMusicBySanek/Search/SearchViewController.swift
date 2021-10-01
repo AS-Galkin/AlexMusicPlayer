@@ -23,6 +23,7 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
     }
     private var timer: Timer?
     private lazy var searchTableFooterView: SearchTableFooterView = SearchTableFooterView()
+    var tabBarDelegate: MainTabBarDelegate?
     
     @IBOutlet weak var searchTableView: UITableView!
     
@@ -82,6 +83,8 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
     }
 }
 
+//MARK: - UITableViewDelegate, UITableViewDataSource
+
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cellViewModel.cells.count
@@ -114,20 +117,24 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        //MARK: - GET FIRST KEY WINDOW IN SCENE
+//        //MARK: - GET FIRST KEY WINDOW IN SCENE
+//
+//        let keyWindow = UIApplication.shared.connectedScenes.filter({$0.activationState == .foregroundActive}).compactMap({$0 as? UIWindowScene}).first?.windows.filter({$0.isKeyWindow}).first
+//
+//        let detailTrackView: TrackDetailView = TrackDetailView.loadFromNib()
+//        detailTrackView.delegate = self
+//
+//        keyWindow?.addSubview(detailTrackView)
+//
+//        //MARK: - Send data to DetailView
+//        detailTrackView.setDisplayedData(viewModel: cellViewModel.cells[indexPath.row])
         
-        let keyWindow = UIApplication.shared.connectedScenes.filter({$0.activationState == .foregroundActive}).compactMap({$0 as? UIWindowScene}).first?.windows.filter({$0.isKeyWindow}).first
-        
-        let detailTrackView: TrackDetailView = TrackDetailView.loadFromNib()
-        detailTrackView.delegate = self
-        
-        keyWindow?.addSubview(detailTrackView)
-        
-        //MARK: - Send data to DetailView
-        detailTrackView.setDisplayedData(viewModel: cellViewModel.cells[indexPath.row])
+        self.tabBarDelegate?.maximazeDetailTrackView(viewModel: cellViewModel.cells[indexPath.row])
         
     }
 }
+
+//MARK: - UISearchBarDelegate
 
 extension SearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -136,6 +143,7 @@ extension SearchViewController: UISearchBarDelegate {
         
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { [weak self]_ in
             self?.interactor?.makeRequest(request: .getTracks(searchTerm: searchText))
+            searchBar.endEditing(true)
         })
         
     }
@@ -153,12 +161,16 @@ extension SearchViewController: TrackMovingDelegate {
             return nil
         }
         
-        var nextIndexPath = getIndexPath(seek: seek, indexPath: curentIndexPath)
-        
-        if nextIndexPath.row == cellViewModel.cells.count {
+        var nextIndexPath = IndexPath(item: 0, section: 0)
+
+        if curentIndexPath.row == cellViewModel.cells.count - 1 && seek > 0 {
             nextIndexPath.row = 0
-        } else {
+            nextIndexPath.section = curentIndexPath.section
+        } else if curentIndexPath.row == 0 && seek < 0 {
             nextIndexPath.row = cellViewModel.cells.count - 1
+            nextIndexPath.section = curentIndexPath.section
+        } else {
+            nextIndexPath = getIndexPath(seek: seek, indexPath: curentIndexPath)
         }
         
         let viewModel = cellViewModel.cells[nextIndexPath.row]

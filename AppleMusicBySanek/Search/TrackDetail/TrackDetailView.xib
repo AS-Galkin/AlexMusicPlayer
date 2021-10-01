@@ -14,6 +14,61 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vPQ-wi-SXv">
+                    <rect key="frame" x="0.0" y="44" width="375" height="64"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="l14-7s-IZh">
+                            <rect key="frame" x="8" y="8" width="359" height="48"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YXi-3u-YoG">
+                                    <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="YXi-3u-YoG" secondAttribute="height" multiplier="1:1" id="tHp-Sy-4HS"/>
+                                    </constraints>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Track title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BK9-eq-usF">
+                                    <rect key="frame" x="64" y="0.0" width="167" height="48"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GpC-jo-2Vs">
+                                    <rect key="frame" x="247" y="0.0" width="48" height="48"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="GpC-jo-2Vs" secondAttribute="height" multiplier="1:1" id="sUC-fl-rQ3"/>
+                                    </constraints>
+                                    <color key="tintColor" systemColor="labelColor"/>
+                                    <state key="normal" image="play">
+                                        <color key="titleColor" systemColor="labelColor"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="playPauseButtonHandler:" destination="RsM-CO-31s" eventType="touchUpInside" id="Hxp-Bm-HBy"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nbe-eH-8kI">
+                                    <rect key="frame" x="311" y="0.0" width="48" height="48"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="nbe-eH-8kI" secondAttribute="height" multiplier="1:1" id="zet-nV-BxK"/>
+                                    </constraints>
+                                    <color key="tintColor" systemColor="labelColor"/>
+                                    <state key="normal" image="Right">
+                                        <color key="titleColor" systemColor="labelColor"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="nextTrackButtonHandler:" destination="RsM-CO-31s" eventType="touchUpInside" id="Ptx-sm-vHX"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="0.59682545272965459" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="l14-7s-IZh" secondAttribute="trailing" constant="8" id="8Zf-41-iCq"/>
+                        <constraint firstItem="l14-7s-IZh" firstAttribute="top" secondItem="vPQ-wi-SXv" secondAttribute="top" constant="8" id="UKp-S8-1qu"/>
+                        <constraint firstAttribute="height" constant="64" id="eKK-bV-E1P"/>
+                        <constraint firstAttribute="bottom" secondItem="l14-7s-IZh" secondAttribute="bottom" constant="8" id="jxP-lm-2K1"/>
+                        <constraint firstItem="l14-7s-IZh" firstAttribute="leading" secondItem="vPQ-wi-SXv" secondAttribute="leading" constant="8" id="sC9-mz-Av1"/>
+                    </constraints>
+                </view>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="L7s-DD-BXa">
                     <rect key="frame" x="30" y="44" width="315" height="704"/>
                     <subviews>
@@ -83,21 +138,30 @@
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j9q-C6-OaC">
                                     <rect key="frame" x="0.0" y="78" width="105" height="22"/>
-                                    <state key="normal" image="Left"/>
+                                    <color key="tintColor" systemColor="labelColor"/>
+                                    <state key="normal" image="Left">
+                                        <color key="titleColor" systemColor="labelColor"/>
+                                    </state>
                                     <connections>
                                         <action selector="prevTrackButtonHandler:" destination="RsM-CO-31s" eventType="touchUpInside" id="7el-NH-zdh"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ruA-3h-Qc4">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ruA-3h-Qc4">
                                     <rect key="frame" x="105" y="59.333333333333258" width="105" height="59"/>
-                                    <state key="normal" image="play"/>
+                                    <color key="tintColor" systemColor="labelColor"/>
+                                    <state key="normal" image="play">
+                                        <color key="titleColor" systemColor="labelColor"/>
+                                    </state>
                                     <connections>
                                         <action selector="playPauseButtonHandler:" destination="RsM-CO-31s" eventType="touchUpInside" id="oaL-sl-Aq1"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gux-c5-NdI">
                                     <rect key="frame" x="210" y="78" width="105" height="22"/>
-                                    <state key="normal" image="Right"/>
+                                    <color key="tintColor" systemColor="labelColor"/>
+                                    <state key="normal" image="Right">
+                                        <color key="titleColor" systemColor="labelColor"/>
+                                    </state>
                                     <connections>
                                         <action selector="nextTrackButtonHandler:" destination="RsM-CO-31s" eventType="touchUpInside" id="NXm-ff-DHb"/>
                                     </connections>
@@ -114,7 +178,7 @@
                                         <constraint firstAttribute="width" secondItem="S3T-xA-NL6" secondAttribute="height" multiplier="1:1" id="Y5u-aZ-IIM"/>
                                     </constraints>
                                 </imageView>
-                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="D40-b5-BCY">
+                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.29999999999999999" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="D40-b5-BCY">
                                     <rect key="frame" x="25" y="0.0" width="265" height="18"/>
                                     <connections>
                                         <action selector="volumeSliderHandler:" destination="RsM-CO-31s" eventType="valueChanged" id="OjZ-G8-h7O"/>
@@ -138,25 +202,34 @@
             <viewLayoutGuide key="safeArea" id="HzH-63-tA9"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="HzH-63-tA9" firstAttribute="trailing" secondItem="vPQ-wi-SXv" secondAttribute="trailing" id="0Fr-FT-ycD"/>
                 <constraint firstItem="HzH-63-tA9" firstAttribute="bottom" secondItem="L7s-DD-BXa" secondAttribute="bottom" constant="30" id="10J-BE-ebv"/>
                 <constraint firstItem="HzH-63-tA9" firstAttribute="trailing" secondItem="L7s-DD-BXa" secondAttribute="trailing" constant="30" id="Od6-Hh-vCT"/>
+                <constraint firstItem="vPQ-wi-SXv" firstAttribute="leading" secondItem="HzH-63-tA9" secondAttribute="leading" id="SBv-1f-HR8"/>
                 <constraint firstItem="L7s-DD-BXa" firstAttribute="top" secondItem="HzH-63-tA9" secondAttribute="top" id="h3J-xv-iRa"/>
                 <constraint firstItem="L7s-DD-BXa" firstAttribute="leading" secondItem="HzH-63-tA9" secondAttribute="leading" constant="30" id="tfN-yu-Upg"/>
+                <constraint firstItem="vPQ-wi-SXv" firstAttribute="top" secondItem="HzH-63-tA9" secondAttribute="top" id="xtn-7E-l8J"/>
             </constraints>
             <connections>
                 <outlet property="artistLabel" destination="zcb-kN-kgU" id="Duv-An-NgT"/>
                 <outlet property="currentTimeLabel" destination="NaB-fB-INg" id="jy7-A5-O9g"/>
                 <outlet property="currentTimeSlider" destination="6cQ-8D-KdF" id="8Ce-SH-Iqd"/>
                 <outlet property="dragDownButton" destination="tER-dd-Ydo" id="fhr-Rg-jvZ"/>
+                <outlet property="miniImageView" destination="YXi-3u-YoG" id="94v-T6-fRU"/>
+                <outlet property="miniNextTrackButton" destination="nbe-eH-8kI" id="wS4-85-bDZ"/>
+                <outlet property="miniPlayButton" destination="GpC-jo-2Vs" id="4gf-aT-r0m"/>
+                <outlet property="miniTrackLabel" destination="BK9-eq-usF" id="URr-2F-hHz"/>
+                <outlet property="miniTrackView" destination="vPQ-wi-SXv" id="Svi-82-51X"/>
                 <outlet property="nextTrackButton" destination="gux-c5-NdI" id="Rja-uV-UA5"/>
                 <outlet property="playPauseButton" destination="ruA-3h-Qc4" id="LcY-um-pDh"/>
                 <outlet property="previousTrackButton" destination="j9q-C6-OaC" id="4Nj-ml-uCU"/>
                 <outlet property="summaryTimeLabel" destination="DpX-Tn-qdn" id="HFS-Hu-yjW"/>
                 <outlet property="trackImageView" destination="Veb-a2-fS6" id="Kpp-ik-JxL"/>
+                <outlet property="trackStackView" destination="L7s-DD-BXa" id="wly-Uh-69V"/>
                 <outlet property="trackTitleLabel" destination="fWf-rw-jCi" id="ZKI-AP-I7z"/>
                 <outlet property="volumeSlider" destination="D40-b5-BCY" id="9R1-BS-0OP"/>
             </connections>
-            <point key="canvasLocation" x="-42.028985507246382" y="133.69565217391306"/>
+            <point key="canvasLocation" x="-42.399999999999999" y="133.00492610837438"/>
         </view>
     </objects>
     <resources>
@@ -166,6 +239,9 @@
         <image name="Left" width="34" height="20"/>
         <image name="Right" width="34" height="20"/>
         <image name="play" width="59" height="59"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
