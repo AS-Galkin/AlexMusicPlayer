@@ -74,6 +74,27 @@ class TrackDetailView: UIView {
     private func setupGestureMiniTrackView() {
         miniTrackView.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handlePanRecognizer(sender:))))
         miniTrackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapRecognizer)))
+        addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(dismissHandlePanRecognizer(sender:))))
+    }
+    
+    @objc private func dismissHandlePanRecognizer(sender: UIPanGestureRecognizer) {
+        switch sender.state {
+        case .changed:
+            let translation = sender.translation(in: self.superview)
+            trackStackView.transform = CGAffineTransform(translationX: 0, y: translation.y)
+            break
+        case .ended:
+            let translation = sender.translation(in: self.superview)
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseInOut, animations: { [weak self] in
+                self?.trackStackView.transform = .identity
+                if translation.y > 50 {
+                    self?.tabBarDelegate?.minimizeDetailTrackView()
+                }
+            }, completion: nil)
+            break
+        @unknown default:
+            break
+        }
     }
     
     @objc private func handlePanRecognizer(sender: UIPanGestureRecognizer) {
@@ -99,8 +120,6 @@ class TrackDetailView: UIView {
     private func handlePanChanges(gesture: UIPanGestureRecognizer) {
         let translation = gesture.translation(in: self.superview)
         self.transform = CGAffineTransform(translationX: 0, y: translation.y)
-
-        print("Translation Y is: \(translation.y) \nVelosity Y is: \(gesture.velocity(in: self.superview).y).\n")
         
         let aplha = 1 + translation.y / 200
 
@@ -117,8 +136,6 @@ class TrackDetailView: UIView {
     private func handlePanEnded(gesture: UIPanGestureRecognizer) {
         let translation = gesture.translation(in: self.superview)
         let velocity = gesture.velocity(in: self.superview)
-        
-
         
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseInOut, animations: {[weak self] in
             self?.transform = .identity
