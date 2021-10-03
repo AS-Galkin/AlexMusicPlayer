@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 protocol MainTabBarDelegate: AnyObject {
     func minimizeDetailTrackView()
@@ -29,10 +30,15 @@ class MainTabBarController: UITabBarController {
         searchVC.tabBarDelegate = self
         view.insertSubview(detailTrackView, belowSubview: tabBar)
         
+        let libraryView = Library()
+        let hosterVC = UIHostingController(rootView: libraryView)
+        hosterVC.tabBarItem.image = #imageLiteral(resourceName: "library")
+        hosterVC.tabBarItem.title = "Library"
+        
         tabBar.tintColor = #colorLiteral(red: 1, green: 0, blue: 0.3764705882, alpha: 1)
         viewControllers = [
-            generateViewController(rootViewController: searchVC, image: #imageLiteral(resourceName: "search"), title: "Search"),
-            generateViewController(rootViewController: ViewController(), image: #imageLiteral(resourceName: "library"), title: "Library"),
+            hosterVC,
+            generateViewController(rootViewController: searchVC, image: #imageLiteral(resourceName: "search"), title: "Search")
         ]
         
         detailTrackView.translatesAutoresizingMaskIntoConstraints = false

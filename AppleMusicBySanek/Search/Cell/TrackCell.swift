@@ -15,6 +15,10 @@ protocol CellViewModelProtocol {
     var trackImageUrl: String? { get }
 }
 
+protocol SaveDataProtocol {
+    func saveTrack(for object: SearchViewModel.Cell)
+}
+
 class TrackCell: UITableViewCell {
     
     static let reuseId = "TrackCell"
@@ -22,6 +26,8 @@ class TrackCell: UITableViewCell {
     @IBOutlet weak var artistNameLabel: UILabel!
     @IBOutlet weak var collectionNameLabel: UILabel!
     @IBOutlet weak var trackImage: UIImageView!
+    @IBOutlet weak var saveTrackButton: UIButton!
+    weak var interactorDelegate: SearchInteractor?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,7 +36,9 @@ class TrackCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
     }
-    
+    @IBAction func saveTrackHandler(_ sender: UIButton) {
+        
+    }
     
     func setViewData(viewModel: CellViewModelProtocol) {
         trackNameLabel.text = viewModel.trackName

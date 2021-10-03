@@ -33,8 +33,8 @@ enum Search {
   }
 }
 
-struct SearchViewModel {
-    struct Cell: CellViewModelProtocol {
+struct SearchViewModel: Codable {
+    struct Cell: CellViewModelProtocol, Codable {
         var trackName: String?
         var collectionName: String?
         var artistName: String?

@@ -9,10 +9,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="2u1-sZ-fiS" customClass="TrackCell" customModule="AppleMusicBySanek" customModuleProvider="target">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="2u1-sZ-fiS" customClass="TrackCell" customModule="MusicPlayer" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="414" height="84"/>
             <autoresizingMask key="autoresizingMask"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2u1-sZ-fiS" translatesAutoresizingMaskIntoConstraints="NO" id="m6j-5u-lg9" customClass="TrackCell" customModule="AppleMusicBySanek" customModuleProvider="target">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2u1-sZ-fiS" translatesAutoresizingMaskIntoConstraints="NO" id="m6j-5u-lg9" customClass="TrackCell" customModule="MusicPlayer" customModuleProvider="target">
                 <rect key="frame" x="0.0" y="0.0" width="414" height="84"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
@@ -44,6 +44,15 @@
                         <color key="textColor" red="0.72156862749999995" green="0.72156862749999995" blue="0.72941176470000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FiO-xa-vBm">
+                        <rect key="frame" x="374" y="33" width="16" height="18"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                        <state key="normal" image="Add"/>
+                        <connections>
+                            <action selector="saveTrackHandler:" destination="2u1-sZ-fiS" eventType="touchUpInside" id="sKP-Lx-EAT"/>
+                            <action selector="saveTrackHndler:" destination="2u1-sZ-fiS" eventType="touchUpInside" id="kH3-Kk-VMX"/>
+                        </connections>
+                    </button>
                 </subviews>
             </tableViewCellContentView>
             <connections>
@@ -56,6 +65,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="Add" width="16" height="16"/>
         <image name="library" width="22" height="26"/>
         <systemColor name="systemPinkColor">
             <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -81,6 +81,9 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
         
         searchTableView.tableFooterView = searchTableFooterView
     }
+    
+    //MARK: - IBActions
+    
 }
 
 //MARK: - UITableViewDelegate, UITableViewDataSource

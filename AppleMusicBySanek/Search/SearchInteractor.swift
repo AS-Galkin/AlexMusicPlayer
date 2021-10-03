@@ -32,5 +32,17 @@ class SearchInteractor: SearchBusinessLogic {
             break
         }
     }
-    
+}
+
+extension SearchInteractor: SaveDataProtocol {
+    func saveTrack(for object: SearchViewModel.Cell) {
+        let userDefaults = UserDefaults.standard
+        
+        JSONEncoder().encodeInBackground(from: object) { data in
+            print("Data \(String(data: data ?? Data(), encoding: .utf8))")
+            if let trackName = object.trackName {
+                userDefaults.set(data, forKey: trackName)
+            }
+        }
+    }
 }
