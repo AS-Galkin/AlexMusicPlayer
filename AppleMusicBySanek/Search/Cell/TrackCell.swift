@@ -17,6 +17,7 @@ protocol CellViewModelProtocol {
 
 protocol SaveDataProtocol {
     func saveTrack(for object: SearchViewModel.Cell)
+    static func loadTracks(closure: @escaping ([SearchViewModel.Cell]?) -> Void)
 }
 
 class TrackCell: UITableViewCell {
@@ -27,7 +28,8 @@ class TrackCell: UITableViewCell {
     @IBOutlet weak var collectionNameLabel: UILabel!
     @IBOutlet weak var trackImage: UIImageView!
     @IBOutlet weak var saveTrackButton: UIButton!
-    weak var interactorDelegate: SearchInteractor?
+    var interactorDelegate: SearchBusinessLogic?
+    private var cellData: SearchViewModel.Cell?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -37,10 +39,15 @@ class TrackCell: UITableViewCell {
         super.prepareForReuse()
     }
     @IBAction func saveTrackHandler(_ sender: UIButton) {
+        guard let cellData = self.cellData else { return }
         
+        if let interactor = interactorDelegate as? SearchInteractor {
+            interactor.saveTrack(for: cellData)
+        }
     }
     
-    func setViewData(viewModel: CellViewModelProtocol) {
+    func setViewData(viewModel: SearchViewModel.Cell) {
+        cellData = viewModel
         trackNameLabel.text = viewModel.trackName
         artistNameLabel.text = viewModel.artistName
         collectionNameLabel.text = viewModel.collectionName

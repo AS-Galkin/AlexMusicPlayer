@@ -99,6 +99,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         }
         let cellData = cellViewModel.cells[indexPath.row]
         cell.setViewData(viewModel: cellData)
+        cell.interactorDelegate = interactor
         return cell
     }
     

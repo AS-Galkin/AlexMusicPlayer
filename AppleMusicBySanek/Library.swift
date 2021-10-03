@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct Library: View {
+    var delegate: SaveDataProtocol?
     var body: some View {
         NavigationView {
             VStack {
@@ -24,7 +25,13 @@ struct Library: View {
                         })
                         
                         Button(action: {
-                            
+                            SearchInteractor.loadTracks { tracks in
+                                if let tracks = tracks {
+                                    for i in tracks {
+                                        print(i.trackName)
+                                    }
+                                }
+                            }
                         }, label: {
                             Image(systemName: "arrow.up.arrow.down.circle")
                                 .frame(width: geometry.size.width / 2 - 10, height: 50)
@@ -42,7 +49,7 @@ struct Library: View {
                     LibraryCell()
                     LibraryCell()
                 }
-  
+                
             }
             .navigationTitle("Library")
         }

@@ -7,64 +7,64 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "6D111ED3-2F66-4F72-9AD8-2C754E0E1D1E"
+            uuid = "9B24DFFC-01BA-470C-881A-3FA430EBD4B7"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "AppleMusicBySanek/Search/SearchViewController.swift"
+            filePath = "AppleMusicBySanek/Search/SearchInteractor.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
-            landmarkName = "displayData(viewModel:)"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "saveTrack(for:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "E18A5845-0357-4BF6-BC1D-91653D1FB959"
+            uuid = "3538FF3F-95D6-44DE-BEF3-7380B3B4412D"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "AppleMusicBySanek/Search/SearchViewController.swift"
+            filePath = "AppleMusicBySanek/Helpers/CodableExtension.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "61"
-            endingLineNumber = "61"
-            landmarkName = "displayData(viewModel:)"
+            startingLineNumber = "13"
+            endingLineNumber = "13"
+            landmarkName = "decodeInBackground(from:onDecode:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "C7B7D49C-E28A-412D-A4C6-42BE588FD97F"
+            uuid = "3928D01F-4278-4A63-B92C-C2A335E45B9F"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "AppleMusicBySanek/MainTabBarController.swift"
+            filePath = "AppleMusicBySanek/Helpers/CodableExtension.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
-            landmarkName = "minimizeDetailTrackView()"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "encodeInBackground(from:onEncode:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "96510DA1-1149-4EAA-A186-C0FFD7D9BB26"
-            shouldBeEnabled = "Yes"
+            uuid = "38DBE9FC-96D4-4B7B-9F4D-789A914712D9"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "AppleMusicBySanek/MainTabBarController.swift"
+            filePath = "AppleMusicBySanek/Search/SearchInteractor.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
-            landmarkName = "maximazeDetailTrackView(viewModel:)"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "saveTrack(for:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

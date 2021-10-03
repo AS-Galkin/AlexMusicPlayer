@@ -13,6 +13,7 @@ protocol SearchBusinessLogic {
 }
 
 class SearchInteractor: SearchBusinessLogic {
+    static let userDefaultsKey = "tracks"
     private let networkService = NetworkLayer()
     var presenter: SearchPresentationLogic?
     var service: SearchService?
@@ -38,11 +39,34 @@ extension SearchInteractor: SaveDataProtocol {
     func saveTrack(for object: SearchViewModel.Cell) {
         let userDefaults = UserDefaults.standard
         
-        JSONEncoder().encodeInBackground(from: object) { data in
-            print("Data \(String(data: data ?? Data(), encoding: .utf8))")
-            if let trackName = object.trackName {
-                userDefaults.set(data, forKey: trackName)
+        var existing: [SearchViewModel.Cell]? = []
+        
+        if let data = userDefaults.data(forKey: SearchInteractor.userDefaultsKey) {
+            JSONDecoder().decodeInBackground(from: data) { (tracks: [SearchViewModel.Cell]?) in
+                existing = tracks
+                if !existing!.contains(where: { cell in
+                    object.trackName! == cell.trackName
+                }) {
+                    existing?.append(object)
+                    JSONEncoder().encodeInBackground(from: existing) { data in
+                        userDefaults.set(data, forKey: SearchInteractor.userDefaultsKey)
+                    }
+                }
+            }
+        } else {
+            existing?.append(object)
+            JSONEncoder().encodeInBackground(from: existing) { data in
+                userDefaults.set(data, forKey: SearchInteractor.userDefaultsKey)
+            }
+        }
+    }
+    
+    static func loadTracks(closure: @escaping ([SearchViewModel.Cell]?) -> Void) {
+        if let data = UserDefaults.standard.data(forKey: SearchInteractor.userDefaultsKey) {
+            JSONDecoder().decodeInBackground(from: data) { (tracks: [SearchViewModel.Cell]?) in
+                closure(tracks)
             }
         }
     }
 }
+
