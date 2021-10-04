@@ -34,7 +34,8 @@ enum Search {
 }
 
 struct SearchViewModel: Codable {
-    struct Cell: CellViewModelProtocol, Codable {
+    struct Cell: CellViewModelProtocol, Codable, Identifiable {
+        var id = UUID()
         var trackName: String?
         var collectionName: String?
         var artistName: String?

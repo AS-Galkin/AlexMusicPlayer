@@ -45,7 +45,8 @@ extension SearchInteractor: SaveDataProtocol {
             JSONDecoder().decodeInBackground(from: data) { (tracks: [SearchViewModel.Cell]?) in
                 existing = tracks
                 if !existing!.contains(where: { cell in
-                    object.trackName! == cell.trackName
+                    guard let trackName = object.trackName else { return true }
+                    return trackName == cell.trackName
                 }) {
                     existing?.append(object)
                     JSONEncoder().encodeInBackground(from: existing) { data in

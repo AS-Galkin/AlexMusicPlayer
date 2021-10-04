@@ -9,6 +9,11 @@ import SwiftUI
 
 struct Library: View {
     var delegate: SaveDataProtocol?
+    
+    @State var tracks: [SearchViewModel.Cell] = []
+    
+    var list: [SearchViewModel.Cell] = []
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -26,10 +31,8 @@ struct Library: View {
                         
                         Button(action: {
                             SearchInteractor.loadTracks { tracks in
-                                if let tracks = tracks {
-                                    for i in tracks {
-                                        print(i.trackName)
-                                    }
+                                if tracks != nil {
+                                    self.tracks = tracks!
                                 }
                             }
                         }, label: {
@@ -44,25 +47,26 @@ struct Library: View {
                 
                 Divider().padding(.leading).padding(.trailing)
                 
-                List {
-                    LibraryCell()
-                    LibraryCell()
-                    LibraryCell()
+                List(tracks) { track in
+                    LibraryCell(cell: track)
                 }
                 
             }
+            
             .navigationTitle("Library")
         }
     }
 }
 
 struct LibraryCell: View {
+    var cell: SearchViewModel.Cell
+    
     var body: some View {
         HStack {
             Image("Image").resizable().frame(width: 60, height: 60).cornerRadius(5)
-            VStack {
-                Text("Track title")
-                Text("Artist title")
+            VStack(alignment: .leading) {
+                Text("\(cell.trackName ?? "")").fontWeight(.bold)
+                Text("\(cell.artistName ?? "")")
             }
         }
     }
