@@ -18,6 +18,7 @@ protocol CellViewModelProtocol {
 protocol SaveDataProtocol {
     func saveTrack(for object: SearchViewModel.Cell)
     static func loadTracks(closure: @escaping ([SearchViewModel.Cell]?) -> Void)
+    static func deleteTrack(at offset: IndexSet)
 }
 
 class TrackCell: UITableViewCell {

@@ -11,6 +11,7 @@ struct Library: View {
     var delegate: SaveDataProtocol?
     
     @State var tracks: [SearchViewModel.Cell] = []
+    @State var alertViewIsHidden: Bool = false
     
     var list: [SearchViewModel.Cell] = []
     
@@ -50,13 +51,18 @@ struct Library: View {
                 List {
                     ForEach(tracks) { track in
                         LibraryCell(cell: track)
-                    }
+                    }.onDelete(perform: forEachDeleteHandler(at:))
                 }
                 
             }
             
             .navigationTitle("Library")
         }
+    }
+    
+    private func forEachDeleteHandler(at offset: IndexSet) {
+        self.tracks.remove(atOffsets: offset)
+        SearchInteractor.deleteTrack(at: offset)
     }
 }
 

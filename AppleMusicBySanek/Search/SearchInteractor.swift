@@ -36,13 +36,28 @@ class SearchInteractor: SearchBusinessLogic {
 }
 
 extension SearchInteractor: SaveDataProtocol {
+    static func deleteTrack(at offset: IndexSet) {
+        let userDefaults = UserDefaults.standard
+        
+        if let data = userDefaults.data(forKey: SearchInteractor.userDefaultsKey) {
+            JSONDecoder().decodeInBackground(from: data) { ( tracks: inout [SearchViewModel.Cell]?) in
+                tracks?.remove(atOffsets: offset)
+                if tracks != nil {
+                    JSONEncoder().encodeInBackground(from: tracks!) { data in
+                        userDefaults.set(data, forKey: SearchInteractor.userDefaultsKey)
+                    }
+                }
+            }
+        }
+    }
+    
     func saveTrack(for object: SearchViewModel.Cell) {
         let userDefaults = UserDefaults.standard
         
         var existing: [SearchViewModel.Cell]? = []
         
         if let data = userDefaults.data(forKey: SearchInteractor.userDefaultsKey) {
-            JSONDecoder().decodeInBackground(from: data) { (tracks: [SearchViewModel.Cell]?) in
+            JSONDecoder().decodeInBackground(from: data) { (tracks: inout [SearchViewModel.Cell]?) in
                 existing = tracks
                 if !existing!.contains(where: { cell in
                     guard let trackName = object.trackName else { return true }
@@ -64,7 +79,7 @@ extension SearchInteractor: SaveDataProtocol {
     
     static func loadTracks(closure: @escaping ([SearchViewModel.Cell]?) -> Void) {
         if let data = UserDefaults.standard.data(forKey: SearchInteractor.userDefaultsKey) {
-            JSONDecoder().decodeInBackground(from: data) { (tracks: [SearchViewModel.Cell]?) in
+            JSONDecoder().decodeInBackground(from: data) { (tracks: inout [SearchViewModel.Cell]?) in
                 closure(tracks)
             }
         }

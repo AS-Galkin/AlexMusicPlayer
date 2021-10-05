@@ -8,12 +8,12 @@
 import Foundation
 
 extension JSONDecoder {
-    func decodeInBackground<T: Decodable>(from data: Data, onDecode: @escaping (T?) -> Void) {
+    func decodeInBackground<T: Decodable>(from data: Data, onDecode: @escaping (inout T?) -> Void) {
         DispatchQueue.global(qos: .background).async {
-            let decoded: T? = try? self.decode(T.self, from: data)
+            var decoded: T? = try? self.decode(T.self, from: data)
             
             DispatchQueue.main.async {
-                onDecode(decoded)
+                onDecode(&decoded)
             }
         }
     }
@@ -23,7 +23,6 @@ extension JSONEncoder {
     func encodeInBackground<T: Encodable>(from object: T?, onEncode: @escaping (Data?) -> Void) {
         DispatchQueue.global(qos: .background).async {
             let result = try? self.encode(object)
-            
             DispatchQueue.main.async {
                 onEncode(result)
             }
