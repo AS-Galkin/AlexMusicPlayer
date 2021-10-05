@@ -15,7 +15,7 @@ protocol MainTabBarDelegate: AnyObject {
 
 class MainTabBarController: UITabBarController {
     
-    private var detailTrackView: TrackDetailView = TrackDetailView.loadFromNib()
+    var detailTrackView: TrackDetailView = TrackDetailView.loadFromNib()
     private var maximalTrackViewTopAnchor: NSLayoutConstraint!
     private var minimalTrackViewTopAnchor: NSLayoutConstraint!
     private var minimalTrackViewBottomAnchor: NSLayoutConstraint!
@@ -29,8 +29,11 @@ class MainTabBarController: UITabBarController {
         detailTrackView.delegate = searchVC
         searchVC.tabBarDelegate = self
         view.insertSubview(detailTrackView, belowSubview: tabBar)
-        
-        let libraryView = Library()
+
+        let cells: [SearchViewModel.Cell]? = try? JSONDecoder().decode([SearchViewModel.Cell].self, from: UserDefaults.standard.data(forKey: SearchInteractor.userDefaultsKey) ?? Data()) as? [SearchViewModel.Cell]
+                
+        var libraryView = Library(tracks: cells ?? [SearchViewModel.Cell()])
+        libraryView.tabBarDelegate = self
         let hosterVC = UIHostingController(rootView: libraryView)
         hosterVC.tabBarItem.image = #imageLiteral(resourceName: "library")
         hosterVC.tabBarItem.title = "Library"

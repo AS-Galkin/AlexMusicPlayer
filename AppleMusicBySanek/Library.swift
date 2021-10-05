@@ -8,12 +8,11 @@
 import SwiftUI
 
 struct Library: View {
-    var delegate: SaveDataProtocol?
     
-    @State var tracks: [SearchViewModel.Cell] = []
-    @State var alertViewIsHidden: Bool = false
-    
-    var list: [SearchViewModel.Cell] = []
+    @State var tracks: [SearchViewModel.Cell]
+    @State private var alertViewState = false
+    @State private var track: SearchViewModel.Cell!
+    var tabBarDelegate: MainTabBarDelegate?
     
     var body: some View {
         NavigationView {
@@ -31,11 +30,7 @@ struct Library: View {
                         })
                         
                         Button(action: {
-                            SearchInteractor.loadTracks { tracks in
-                                if tracks != nil {
-                                    self.tracks = tracks!
-                                }
-                            }
+                            getTracks()
                         }, label: {
                             Image(systemName: "arrow.up.arrow.down.circle")
                                 .frame(width: geometry.size.width / 2 - 10, height: 50)
@@ -50,19 +45,55 @@ struct Library: View {
                 
                 List {
                     ForEach(tracks) { track in
-                        LibraryCell(cell: track)
-                    }.onDelete(perform: forEachDeleteHandler(at:))
+                        LibraryCell(cell: track).gesture(LongPressGesture().onEnded({ _ in
+                            self.alertViewState = true
+                            self.track = track
+                        })).simultaneousGesture(TapGesture().onEnded({ _ in
+                            self.track = track
+                            self.tabBarDelegate?.maximazeDetailTrackView(viewModel: track)
+                            
+                            //MARK: - GET FIRST KEY WINDOW IN SCENE
+                            
+                            let keyWindow = UIApplication.shared.connectedScenes.filter({$0.activationState == .foregroundActive}).compactMap({$0 as? UIWindowScene}).first?.windows.filter({$0.isKeyWindow}).first
+                            let mainTabBar = keyWindow?.rootViewController as? MainTabBarController
+                            mainTabBar?.detailTrackView.delegate = self
+                            
+                        }))
+                    }.onDelete(perform: deleteTrack(at:))
                 }
-                
             }
-            
+            .actionSheet(isPresented: $alertViewState, content: {
+                ActionSheet(title: Text("Deleting"), message: Text("Are you shure, you whant to delete track?"), buttons: [.destructive(Text("Delete"), action: {
+                    deleteTrack(track: self.track)
+                }), .cancel()])
+            })
             .navigationTitle("Library")
         }
     }
     
-    private func forEachDeleteHandler(at offset: IndexSet) {
+    private func deleteTrack(at offset: IndexSet) {
         self.tracks.remove(atOffsets: offset)
         SearchInteractor.deleteTrack(at: offset)
+    }
+    
+    private func deleteTrack(track: SearchViewModel.Cell) {
+        guard let index = (tracks.firstIndex {
+            return $0.artistName == track.artistName && $0.trackName == track.trackName
+        }) else {
+            return
+        }
+        
+        self.tracks.remove(at: index)
+        
+        SearchInteractor.deleteTrack(at: IndexSet(arrayLiteral: index))
+    }
+    
+    private func getTracks() {
+        SearchInteractor.loadTracks { tracks in
+            if tracks != nil {
+                self.tracks = tracks!
+            }
+        }
     }
 }
 
@@ -89,6 +120,29 @@ struct LibraryCell: View {
 
 struct Library_Previews: PreviewProvider {
     static var previews: some View {
-        Library()
+        Library(tracks: [SearchViewModel.Cell.init()])
+    }
+}
+
+
+extension Library: TrackMovingDelegate {
+    func move(seek: Int) -> SearchViewModel.Cell? {
+        guard let currentIndex = (tracks.firstIndex {
+            return $0.artistName == track.artistName && $0.trackName == track.trackName
+        }) else {
+            return SearchViewModel.Cell()
+        }
+        
+        var nextIndex = currentIndex + seek
+        print(nextIndex)
+        if nextIndex > tracks.count - 1 {
+            nextIndex = 0
+        } else if nextIndex < 0 {
+            nextIndex = tracks.count - 1
+        }
+
+        self.track = tracks[nextIndex]
+        
+        return track
     }
 }

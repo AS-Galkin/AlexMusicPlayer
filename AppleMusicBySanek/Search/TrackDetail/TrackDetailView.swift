@@ -11,7 +11,7 @@ import AVKit
 
 //MARK: - TrackMoveingDelegate
 
-protocol TrackMovingDelegate: AnyObject {
+protocol TrackMovingDelegate: Any {
     func move(seek: Int) -> SearchViewModel.Cell?
 }
 

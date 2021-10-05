@@ -97,6 +97,11 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TrackCell.reuseId, for: indexPath) as? TrackCell else {
             return UITableViewCell()
         }
+        
+        if let mainTabBar = tabBarController as? MainTabBarController {
+            mainTabBar.detailTrackView.delegate = self
+        }
+        
         let cellData = cellViewModel.cells[indexPath.row]
         cell.setViewData(viewModel: cellData)
         cell.interactorDelegate = interactor
@@ -120,18 +125,6 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-//        //MARK: - GET FIRST KEY WINDOW IN SCENE
-//
-//        let keyWindow = UIApplication.shared.connectedScenes.filter({$0.activationState == .foregroundActive}).compactMap({$0 as? UIWindowScene}).first?.windows.filter({$0.isKeyWindow}).first
-//
-//        let detailTrackView: TrackDetailView = TrackDetailView.loadFromNib()
-//        detailTrackView.delegate = self
-//
-//        keyWindow?.addSubview(detailTrackView)
-//
-//        //MARK: - Send data to DetailView
-//        detailTrackView.setDisplayedData(viewModel: cellViewModel.cells[indexPath.row])
         
         self.tabBarDelegate?.maximazeDetailTrackView(viewModel: cellViewModel.cells[indexPath.row])
         
