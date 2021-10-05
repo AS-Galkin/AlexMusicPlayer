@@ -38,16 +38,22 @@ class TrackCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
     }
-    @IBAction func saveTrackHandler(_ sender: UIButton) {
-        guard let cellData = self.cellData else { return }
-        
-        if let interactor = interactorDelegate as? SearchInteractor {
-            interactor.saveTrack(for: cellData)
-        }
-    }
     
     func setViewData(viewModel: SearchViewModel.Cell) {
         cellData = viewModel
+        
+        SearchInteractor.loadTracks { tracks in
+            if let tracks = tracks {
+                if tracks.contains(where: { track in
+                    return viewModel.artistName == track.artistName && viewModel.trackName == track.trackName
+                }) {
+                    self.saveTrackButton.isHidden = true
+                } else {
+                    self.saveTrackButton.isHidden = false
+                }
+            }
+        }
+        
         trackNameLabel.text = viewModel.trackName
         artistNameLabel.text = viewModel.artistName
         collectionNameLabel.text = viewModel.collectionName
@@ -56,4 +62,17 @@ class TrackCell: UITableViewCell {
             trackImage.sd_setImage(with: url, completed: nil)
         }
     }
+    
+    //MARK: - IBActions
+    @IBAction func saveTrackHandler(_ sender: UIButton) {
+        saveTrackButton.isHidden = true
+        
+        guard let cellData = self.cellData else { return }
+        
+        if let interactor = interactorDelegate as? SearchInteractor {
+            interactor.saveTrack(for: cellData)
+        }
+    }
+    
+
 }

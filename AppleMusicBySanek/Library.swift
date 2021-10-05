@@ -47,8 +47,10 @@ struct Library: View {
                 
                 Divider().padding(.leading).padding(.trailing)
                 
-                List(tracks) { track in
-                    LibraryCell(cell: track)
+                List {
+                    ForEach(tracks) { track in
+                        LibraryCell(cell: track)
+                    }
                 }
                 
             }
@@ -63,8 +65,15 @@ struct LibraryCell: View {
     
     var body: some View {
         HStack {
-            Image("Image").resizable().frame(width: 60, height: 60).cornerRadius(5)
-            VStack(alignment: .leading) {
+            
+            if let urlImage = cell.trackImageUrl,
+               let url = URL(string: urlImage),
+               let data =  try? Data(contentsOf: url),
+               let uiImage = UIImage(data: data) {
+                Image(uiImage: uiImage).resizable().frame(width: 60, height: 60).cornerRadius(5)
+            }
+            
+            VStack(alignment: .leading, spacing: 0) {
                 Text("\(cell.trackName ?? "")").fontWeight(.bold)
                 Text("\(cell.artistName ?? "")")
             }
