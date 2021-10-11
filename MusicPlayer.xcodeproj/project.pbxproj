@@ -31,6 +31,7 @@
 		947359E0270210B800039E92 /* TrackDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 947359DF270210B800039E92 /* TrackDetailView.xib */; };
 		947359E2270210C500039E92 /* TrackDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947359E1270210C500039E92 /* TrackDetailView.swift */; };
 		947A7C59271443340004A942 /* MusicPlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947A7C58271443340004A942 /* MusicPlayerTests.swift */; };
+		947A7C61271447A30004A942 /* InteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947A7C60271447A30004A942 /* InteractorTests.swift */; };
 		947FF24826FCC8E600150023 /* TrackCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 947FF24726FCC8E600150023 /* TrackCell.xib */; };
 		947FF24A26FCC8F000150023 /* TrackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947FF24926FCC8F000150023 /* TrackCell.swift */; };
 		94C552AA270A0077003293BE /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C552A9270A0077003293BE /* Library.swift */; };
@@ -77,6 +78,7 @@
 		947359E1270210C500039E92 /* TrackDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackDetailView.swift; sourceTree = "<group>"; };
 		947A7C56271443340004A942 /* MusicPlayerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MusicPlayerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		947A7C58271443340004A942 /* MusicPlayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayerTests.swift; sourceTree = "<group>"; };
+		947A7C60271447A30004A942 /* InteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractorTests.swift; sourceTree = "<group>"; };
 		947FF24726FCC8E600150023 /* TrackCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackCell.xib; sourceTree = "<group>"; };
 		947FF24926FCC8F000150023 /* TrackCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackCell.swift; sourceTree = "<group>"; };
 		94C552A9270A0077003293BE /* Library.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Library.swift; sourceTree = "<group>"; };
@@ -219,8 +221,17 @@
 			isa = PBXGroup;
 			children = (
 				947A7C58271443340004A942 /* MusicPlayerTests.swift */,
+				947A7C5F271447830004A942 /* InteractorTests */,
 			);
 			path = MusicPlayerTests;
+			sourceTree = "<group>";
+		};
+		947A7C5F271447830004A942 /* InteractorTests */ = {
+			isa = PBXGroup;
+			children = (
+				947A7C60271447A30004A942 /* InteractorTests.swift */,
+			);
+			path = InteractorTests;
 			sourceTree = "<group>";
 		};
 		947FF24626FCC8DA00150023 /* Cell */ = {
@@ -472,6 +483,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				947A7C61271447A30004A942 /* InteractorTests.swift in Sources */,
 				947A7C59271443340004A942 /* MusicPlayerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -29,7 +29,7 @@ class SearchViewController: UIViewController, SearchDisplayLogic {
     
     // MARK: Setup
     
-    private func setup() {
+    func setup() {
         let viewController        = self
         let interactor            = SearchInteractor()
         let presenter             = SearchPresenter()
