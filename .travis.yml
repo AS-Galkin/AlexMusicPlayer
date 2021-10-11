@@ -1,0 +1,6 @@
+language: objective-c  #1
+osx_image: xcode12.5 #2
+script: xctool -workspace MusicPlayer.xcworkspace
+xcode_project: MusicPlayer.xcworkspace #3
+xcode_scheme: MusicPlayer #4
+xcode_sdk: iphonesimulator15.0 #5
