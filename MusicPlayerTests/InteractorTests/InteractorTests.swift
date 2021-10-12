@@ -21,7 +21,7 @@ class InteractorTests: XCTestCase {
     }
     
     func testInteractorIsNotNill() {
-        searchVC.viewDidLoad()
+        searchVC.setup()
         let interactor = searchVC.interactor
         XCTAssertNotNil(interactor)
     }
