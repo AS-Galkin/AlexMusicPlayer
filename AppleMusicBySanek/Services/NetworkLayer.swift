@@ -11,7 +11,7 @@ import Alamofire
 class NetworkLayer {
     public func fetchResults(searchText: String, completion: @escaping (_ results: SearchResponse?) -> Void) {
         let searchURL = "https://itunes.apple.com/search"
-        let parametes = ["term":"\(searchText)", "limit":"100"]
+        let parametes = ["term":"\(searchText)", "limit":"150"]
         AF.request(searchURL, method: .get, parameters: parametes).response { dataResponse in
             
             if let error = dataResponse.error {
